@@ -142,11 +142,15 @@ class SparqlApi(object):
             form_params.append(('query', params['query']))  # noqa: E501
         local_var_files = {}
 
+        #form_params = params['query']
+
         body_params = None
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/sparql-results+xml', 'application/sparql-results+json', 'application/x-binary-rdf-results-table'])  # noqa: E501
-
+        
+        header_params['Content-Type'] ='application/x-www-form-urlencoded'
+        
         # Authentication setting
         auth_settings = []  # noqa: E501
 
@@ -158,7 +162,7 @@ class SparqlApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='int',  # noqa: E501
+            response_type='object',  #'int',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
